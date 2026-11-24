@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Firebase Database Test</title>
+  </head>
+  <body>
+    <h1>Firebase Database Test</h1>
+
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <button id="loginBtn">Login</button>
+    <button id="readBtn">Read Data</button>
+    <button id="writeBtn">Write Data</button>
+
+    <p id="status">Please log in.</p>
+    <pre id="result"></pre>
+
+    <script type="module">
+      import { app, db } from "./firebase-config.js";
+
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+      import {
+        ref,
+        get,
+        push,
+        set,
+      } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
+
+      const auth = getAuth(app);
+      const status = document.getElementById("status");
+      const result = document.getElementById("result");
+
+      // Login test
+      document.getElementById("loginBtn").onclick = async () => {
+        try {
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          await signInWithEmailAndPassword(auth, email, password);
+
+          status.textContent = "Login successful!";
+        } catch (error) {
+          status.textContent = error.message;
+        }
+      };
+
+      // Read test
+      document.getElementById("readBtn").onclick = async () => {
+        try {
+          const snapshot = await get(ref(db, "volunteers"));
+
+          result.textContent = JSON.stringify(snapshot.val(), null, 4);
+          status.textContent = "Read successful!";
+        } catch (error) {
+          status.textContent = error.message;
+        }
+      };
+
+      // Write test
+      document.getElementById("writeBtn").onclick = async () => {
+        try {
+          const volunteerRef = push(ref(db, "volunteers"));
+
+          await set(volunteerRef, {
+            fullName: "Test Volunteer",
+            email: "volunteer@example.com",
+            phoneNumber: "519-555-0103",
+            availability: "Weekends",
+            preferredRole: "Food Distribution",
+            status: "Active",
+          });
+
+          status.textContent = "Write successful!";
+        } catch (error) {
+          status.textContent = error.message;
+        }
+      };
+    </script>
+  </body>
+</html>

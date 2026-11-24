@@ -1,0 +1,20 @@
+{
+    "volunteers": {
+        "-OExampleVolunteer01": {
+            "fullName": "John Smith",
+            "email": "john@example.com",
+            "phoneNumber": "519-555-0101",
+            "availability": "Weekdays",
+            "preferredRole": "Registration",
+            "status": "Active"
+        },
+        "-OExampleVolunteer02": {
+            "fullName": "Jane Brown",
+            "email": "jane@example.com",
+            "phoneNumber": "519-555-0102",
+            "availability": "Both",
+            "preferredRole": "Event Support",
+            "status": "Inactive"
+        }
+    }
+}
