@@ -1,4 +1,4 @@
-<!doctype html>
+ii<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +11,7 @@
     <input type="password" id="password" placeholder="Password" />
 
     <button id="loginBtn">Login</button>
+    <button id="logoutBtn">Logout</button>
     <button id="readBtn">Read Data</button>
     <button id="writeBtn">Write Data</button>
 
@@ -18,11 +19,12 @@
     <pre id="result"></pre>
 
     <script type="module">
-      import { app, db } from "./firebase-config.js";
+      import { db, auth } from "./firebase-config.js";
 
       import {
-        getAuth,
         signInWithEmailAndPassword,
+        signOut,
+        onAuthStateChanged,
       } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
       import {
@@ -32,21 +34,52 @@
         set,
       } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
-      const auth = getAuth(app);
       const status = document.getElementById("status");
       const result = document.getElementById("result");
 
+      // Check authentication status
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          status.textContent = "Logged in: " + user.email;
+        } else {
+          status.textContent = "Please log in.";
+          result.textContent = "";
+        }
+      });
+
       // Login test
       document.getElementById("loginBtn").onclick = async () => {
+        status.textContent = "Logging in...";
+
         try {
-          const email = document.getElementById("email").value;
+          const email = document.getElementById("email").value.trim();
           const password = document.getElementById("password").value;
 
-          await signInWithEmailAndPassword(auth, email, password);
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password,
+          );
 
-          status.textContent = "Login successful!";
+          status.textContent = "Login successful: " + userCredential.user.email;
+
+          console.log("Login successful:", userCredential.user.email);
         } catch (error) {
-          status.textContent = error.message;
+          status.textContent = "Login failed: " + error.message;
+          console.error("Login error:", error);
+        }
+      };
+
+      // Logout test
+      document.getElementById("logoutBtn").onclick = async () => {
+        try {
+          await signOut(auth);
+
+          status.textContent = "Logout successful!";
+          result.textContent = "";
+        } catch (error) {
+          status.textContent = "Logout failed: " + error.message;
+          console.error("Logout error:", error);
         }
       };
 
@@ -58,7 +91,8 @@
           result.textContent = JSON.stringify(snapshot.val(), null, 4);
           status.textContent = "Read successful!";
         } catch (error) {
-          status.textContent = error.message;
+          status.textContent = "Read failed: " + error.message;
+          console.error("Read error:", error);
         }
       };
 
@@ -78,7 +112,8 @@
 
           status.textContent = "Write successful!";
         } catch (error) {
-          status.textContent = error.message;
+          status.textContent = "Write failed: " + error.message;
+          console.error("Write error:", error);
         }
       };
     </script>
