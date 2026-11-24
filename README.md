@@ -45,12 +45,12 @@ Each volunteer record contains the following fields:
 
 ## 5. Firebase Files
 
-| File                         | Description                                             |
-| ---------------------------- | ------------------------------------------------------- |
-| firebase/firebase-config.js  | Firebase initialization and database configuration      |
-| firebase/firebase-test.html  | Firebase authentication and database connection testing |
-| firebase/sample-data.json    | Sample volunteer records                                |
-| firebase/database.rules.json | Firebase Realtime Database security rules               |
+| File                   | Description                                             |
+| ---------------------- | ------------------------------------------------------- |
+| js/firebase-config.js  | Firebase initialization and database configuration      |
+| js/firebase-test.html  | Firebase authentication and database connection testing |
+| js/sample-data.json    | Sample volunteer records                                |
+| js/database.rules.json | Firebase Realtime Database security rules               |
 
 ## 6. Setup Instructions
 
@@ -61,7 +61,7 @@ Each volunteer record contains the following fields:
 5. Use the configured Firebase project.
 6. Sign in with an authorized Firebase user account to access volunteer records.
 
-Firebase is initialized in `firebase/firebase-config.js`.
+Firebase is initialized in `js/firebase-config.js`.
 
 The database security rules require authenticated users to access volunteer records.
 
@@ -82,7 +82,7 @@ The following tests have been completed successfully:
 | ------------ | ------------- | ----------------------------------------------------------------------------------------------------------- |
 | shadowmanach | Part A & E    | User interface development and initial GitHub setup                                                         |
 | Jeongwon Lim | Part B & E    | Firebase configuration, database structure, database integration, testing, and README documentation         |
-| qwq          | Part C        | CRUD operations and realtime data synchronization                                                           |
+| holly        | Part C        | CRUD operations and realtime data synchronization                                                           |
 | suki         | Part D        | Input validation, authentication, security rules, and error handling                                        |
 | All Members  | Part E        | GitHub collaboration, feature branch development, regular commits, pull requests, code reviews, and merging |
 
