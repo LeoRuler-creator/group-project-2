@@ -1,0 +1,8 @@
+{
+    "rules": {
+        "volunteers": {
+            ".read": "auth != null",
+            ".write": "auth != null"
+        }
+    }
+}
