@@ -78,13 +78,13 @@ The following tests have been completed successfully:
 
 ## 8. Group Members and Responsibilities
 
-| Group Member | Assigned Part | Responsibilities                                                                                            |
-| ------------ | ------------- | ----------------------------------------------------------------------------------------------------------- |
-| shadowmanach | Part A & E    | User interface development and initial GitHub setup                                                         |
-| Jeongwon Lim | Part B & E    | Firebase configuration, database structure, database integration, testing, and README documentation         |
-| holly        | Part C        | CRUD operations and realtime data synchronization                                                           |
-| suki         | Part D        | Input validation, authentication, security rules, and error handling                                        |
-| All Members  | Part E        | GitHub collaboration, feature branch development, regular commits, pull requests, code reviews, and merging |
+| Group Member | Assigned Part | Responsibilities |
+
+| Leo Dasios (shadowmanach) | Part A & E | User interface development and initial GitHub setup |
+| Jeongwon Lim (Eileen) | Part B & E | Firebase configuration, database structure, database integration, testing, and README documentation |
+| Holly Cundle (qwq) | Part C | CRUD operations and realtime data synchronization |
+| Andrea Pichinte Cruz (suki) | Part D | Input validation, authentication, security rules, and error handling |
+| All Members | Part E | GitHub collaboration, feature branch development, regular commits, pull requests, code reviews, and merging |
 
 All group members are responsible for GitHub collaboration, feature branches, regular commits, pull requests, and code reviews.
 
